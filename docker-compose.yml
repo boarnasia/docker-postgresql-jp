@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  database:
+    build:
+      context: .
+      dockerfile: "Dockerfile"
+    image: "database:postgres10"
+    container_name: database_postgresql
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=ja_JP.UTF-8 "
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  pgdata:
